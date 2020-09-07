@@ -52,7 +52,7 @@ bail out
               "-..______..-"
 
 The exits are here, here, here, here, here, anywhere!
-							-Aladdin
+              -Aladdin
 
 
 
@@ -146,7 +146,7 @@ You are a shoe.
 I belong on the head...
 You belong to the tail.
 Know your place. Keep your place. Be a shoe.
-											-Snowpiercer
+                      -Snowpiercer
 
 `tail -F`
 Will keep your place outputting at the tail end of a file as it is written to.
@@ -256,20 +256,20 @@ will match phrases such as
                                   $$$$$$$$$$???$$???????££££££££??????????????????$
                                    $      $$$???$$????????££$$$$$$??????????????????$
                                             $$????$$???????$$$$$$$$??????????????????$
-																					  $$??$??$$?????????$$$$$$??????????????????$
+                                            $$??$??$$?????????$$$$$$??????????????????$
                                             ????$$$$????????????$$$$$$????????????????$
-      																		$$$$?????????????????????$$$$??????????????$$
-																					 $$$$??????????????????????$$$$???????????$$$
+                                          $$$$?????????????????????$$$$??????????????$$
+                                           $$$$??????????????????????$$$$???????????$$$
                                              $$$???????????????????????$$$$???????$$$$
                                               $$????????????????????????$$$$$$??$$$$
                                                $$$???????????????????????$$$$$$$$$
-																								$$$$??????????????????????$$$$$$
+                                                $$$$??????????????????????$$$$$$
                                                  $$$$$$$???????????????$$$$$$$
-																									 $$$$$$$$?????$$$$$$$$$$$
+                                                   $$$$$$$$?????$$$$$$$$$$$
                                                       $$$$$$$$$$$$$$$$$
 
 Matchmaker matchmaker make me a match.
-						 -Fiddler on the Roof
+             -Fiddler on the Roof
 
 
 
@@ -318,24 +318,24 @@ Awkward turtle.
 # Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
 
 Definitions:
-blank		          space or tab
+blank             space or tab
 word              aka token, sequence of characters considered as a single unit
 name              word consisting of only alphanumeric and underscore not starting with a number
 metacharacter     character that separates words when not quoted
 control operator  token that performs a control function, example ; ends a command
 
 command - optional variable assignments followed by blank separated words & redirects,
-	terminated by a control operator
+  terminated by a control operator
 
 pipeline - one or more commands separated by by | or |&
 lists    - one or more pipelines separated by ;, &, &&, || (& - run in the background, not and)
 
 Compound commands
 (list) - executed in a subshell env variable assignments and builtin commands
-		that affect the env do not remain after the command completes.
+    that affect the env do not remain after the command completes.
 
 { list; } - list is executed in the current shell env.
-		You need spaces because braces aren't reserved words.
+    You need spaces because braces aren't reserved words.
 
 
 ## Pipes and redirection
@@ -473,7 +473,7 @@ PS4 debugging demo script
 The most significant lesson of history is that we never learn from history.
 Any good history book is mainly just a long list of mistakes complete with names and dates.
 It's very embarrassing.
-		-A. Whitney Brown
+    -A. Whitney Brown
 
 
 
@@ -621,7 +621,7 @@ advanced top
 #    #  ##  ##  #    #  #    #  #    #  #    #
 #####   #    #  #    #  #    #  #    #  #    #
 
-				-Inception
+        -Inception
 
 
 
@@ -713,7 +713,7 @@ Dump and analyze network traffic. Commandline version of wireshark.
           ``--''        `
 
 I am a nice shark, not a mindless eating machine.
-					-Finding Nemo
+          -Finding Nemo
 
 
 
@@ -834,7 +834,7 @@ Or use global/script variables.
 
 Functions aren't expanded. If you want to create a wrapper for a command, use the command keyword:
 function ls {
-	command ls -lh
+  command ls -lh
 }
 
 
@@ -886,11 +886,11 @@ expr1 || expr2 - or
 ## Conditions
 
 if list; then
-	list;
+  list;
 elif list; then
-	list;
+  list;
 else
-	list;
+  list;
 fi
 
 List results in status code. (0 is success, other number is failure).
@@ -932,7 +932,7 @@ esac
 
 ### for, while, until loops
 for name in words; do
-	list;
+  list;
 done
 
 If "in words" is left out, iterates over positional params.
@@ -944,7 +944,7 @@ done
 
 
 for (( initializer-expr ; condition-expr ; step-expr )); do
-	list;
+  list;
 done
 
 for (( c=1; c<=5; c++ ))
@@ -955,11 +955,11 @@ done
 
 
 while list-1; do
-	list-2;
+  list-2;
 done
 
 until list-1; do
-	list-2;
+  list-2;
 done
 
 "until" is like "while !"
@@ -971,13 +971,13 @@ done
 get the user to pick something, keeps looping until cancelled or break.
 
 select name in words; do
-	list;
+  list;
 done
 
 select food in apples bananas; do
-		if [ -n "$food" ]; then
-			break
-		fi
+    if [ -n "$food" ]; then
+      break
+    fi
 done
 echo "I selected $food."
 
