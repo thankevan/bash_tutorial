@@ -376,7 +376,7 @@ like a plumber's T pipe. Read from standard input. Write to the specified file a
 which is the full path of this command if I'm actually running that command
 
 `type`
-type is this command that I'm running when I execute this
+type of this command that I'm running when I execute this
 
 `clear`
 clear the terminal, also C-l (really just scrolls up)
@@ -388,7 +388,7 @@ history of commands
 rerun command from history - !! rerun last command, there are lots of other options for ! as well
 
 `tmux` (also `screen`)
-If you are remoted in, let's you reconnect to your session if you are disconnected.
+If you are remoted in, lets you reconnect to your session if you are disconnected.
 Also allows virtual desktops and split screens
 
 
