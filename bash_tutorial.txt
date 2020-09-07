@@ -1,0 +1,993 @@
+
+
+
+
+
+# Lesson 0 - Initial Info
+
+What's a shell?
+What's bash?
+What about other shells?
+MacOS caveats
+
+Commands can take --long-params and/or -a abbreviations
+
+## Self-Help
+
+`man <command>`
+manual entry for <command>
+
+`man bash`
+everything about the bash shell, built-ins, shortcuts, etc.
+
+google/stackoverflow
+
+`exit`
+bail out
+
+                          .-=-.
+                         /  ! )\
+                      __ \__/__/
+                     / _<( ^.^ )
+                    / /   \ c /O
+                    \ \_.-./=\.-._     _
+                     `-._  `~`    `-,./_<
+                         `\' \'\`'----'
+                       *   \  . \          *
+                            `-~~~\   .
+                       .      `-._`-._   *
+                             *    `~~~-,      *
+                   ()                   * )
+                  <^^>             *     (   .
+                 .-""-.                    )
+      .---.    ."-....-"-._     _...---''`/. '
+     ( (`\ \ .'            ``-''    _.-"'`
+      \ \ \ : :.                 .-'
+       `\`.\: `:.             _.'
+       (  .'`.`            _.'
+        ``    `-..______.-'
+                  ):.  (
+                ."-....-".
+              .':.        `.
+              "-..______..-"
+
+The exits are here, here, here, here, here, anywhere!
+							-Aladdin
+
+
+
+
+
+# Lesson 1 - Navigation, files, folders
+
+`pwd`
+print working directory; where am I?
+
+`cd`
+change directory
+
+`ls`
+list contents of a directory
+
+`rm`
+remove
+
+`mkdir`
+make directory
+
+`rmdir`
+remove directory
+
+`cp`
+copy
+
+`mv`
+move (also rename)
+
+# Lesson 2 - Working with files
+
+`cat`
+catenate - read text from file to output
+
+`tac`
+cat but in reverse order
+
+`more`
+pagenate
+
+`less`
+less is more, and then some
+
+`touch`
+update the timestamp on a file, creates an empty file if it doesn't exist
+
+`tar`
+tape archive - file splitting/merging/compression
+
+`.file`
+This is a hidden file.
+
+`foo\ bar`
+A file named "foo bar"
+
+File names are also case sensitive
+
+`locate`
+locate a file from a system db if it exists in the db after the last update occurred
+
+`find`
+find a file in real time
+
+`head`
+output the first lines of a file
+
+`tail`
+output the last lines of a file, you can tell it to keep giving you the last lines for logs
+
+                                        ,,~~~~~~,,..
+                             ...., ,'~             |
+                             \    V                /
+                              \  /                 /
+                              ;####>     @@@@@     )
+                              ##;,      @@@@@@@    )
+                           .##/  ~>      @@@@@   .   .
+                          ###''#>              '      '
+      .:::::::.      ..###/ #>               '         '
+     //////))))----~~ ## #}                '            '
+   ///////))))))                          '             '
+  ///////)))))))\                        '              '
+ //////)))))))))))                                      '
+ |////)))))))))))))____________________________________).
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+This is size 10 chaos...
+I am a hat.
+You are a shoe.
+I belong on the head...
+You belong to the tail.
+Know your place. Keep your place. Be a shoe.
+											-Snowpiercer
+
+`tail -F`
+Will keep your place outputting at the tail end of a file as it is written to.
+
+
+
+
+
+# Lesson 3 - Globs & regex
+
+
+
+## Unix globs
+
+?
+exactly one character
+
+*
+0+ characters
+
+
+
+## Regex
+
+There are many flavors.
+For consistancy, prefer javascript or PCRE (perl compatible regular expression).
+
+Often like `/regex/` but you can use other characters `|regex|` or `{regex}`
+For substitution `s/match/replace/` or `s{search}{replace}`
+You can use modifiers like g & i after the last / (global and case-insensitive)
+
+.
+exactly one character
+
+?
+0-1 of the previous thing
+`at?` will match a or at
+
+*
+0+ of the previous thing
+`ar*` will match a or ar or arrrrrrrrrr
+
++
+1+ of the previous thing
+`ar+` will match ar or arr or arrrrrrr
+
+[<stuff>]
+a range of things to acceptable for this character
+`gr[ae]y` will match gray or grey
+`pa[a-zA-Z0-9_]*` will match password or pa5Sw0rd_1n_l337
+
+[^<stuff>]
+not this range of, but match anything else
+
+Regex is a deep rabbit hole. Some complex examples...
+
+`(\b[A-Z]+\b).*?\b(?=[a-z]+\b)(?i)\1(?# almost done)\b`
+Test if an uppercase word exists elsewhere as a lowercase word (DOG and dog).
+This uses ranges, special escape characters, groups,
+back references, look arounds, inline modifiers, and comments.
+
+```
+(?(DEFINE)  # start DEFINE block
+  # pre-define quant subroutine
+  (?<quant>many|some|five)
+
+  # pre-define adj subroutine
+  (?<adj>blue|large|interesting)
+
+  # pre-define object subroutine
+  (?<object>cars|elephants|problems)
+
+  # pre-define noun_phrase subroutine
+  (?<noun_phrase>(?&quant)\ (?&adj)\ (?&object))
+
+  # pre-define verb subroutine
+  (?<verb>borrow|solve|resemble)
+)          # end DEFINE block
+
+##### The regex matching starts here #####
+(?&noun_phrase)\ (?&verb)\ (?&noun_phrase)
+```
+will match phrases such as
+"five blue elephants solve many interesting problems"
+"many large problems resemble some interesting cars"
+
+             ?
+           ?????    ??_??
+            ????? ??????
+             ???????$$
+           ?????????$$$$$
+            ???    ???$$$$$$
+                         $$$$$$
+                           $$$$$$$
+                             $$$$$$$      ??????
+                               $$$$$$$$??????????????
+                                 $$$$$$$$$?????????????
+                              ?????$$$$$$$$$????????????
+                            ?????????$$$$$$$$$???????????$
+                          ?????????????$$$$$$$$$$$???????$$$
+                          ???????????????$$$$$$$$$$$?????$$$
+                          $?????????????????$$$$$££££££??????
+                          $$$????????????????$??£££££££$$$$?????       $
+                           $$$$$??????????????????£££££££££$$$$?????????$
+                             $$$$$$???????????$$$???£££££££££??$$??$$?????$$$
+                               $$$$$$$$$$$????$?$???£££££££££££??$$$???????????$$
+                                  $$$$$$$$$$???$$???????££££££££??????????????????$
+                                   $      $$$???$$????????££$$$$$$??????????????????$
+                                            $$????$$???????$$$$$$$$??????????????????$
+																					  $$??$??$$?????????$$$$$$??????????????????$
+                                            ????$$$$????????????$$$$$$????????????????$
+      																		$$$$?????????????????????$$$$??????????????$$
+																					 $$$$??????????????????????$$$$???????????$$$
+                                             $$$???????????????????????$$$$???????$$$$
+                                              $$????????????????????????$$$$$$??$$$$
+                                               $$$???????????????????????$$$$$$$$$
+																								$$$$??????????????????????$$$$$$
+                                                 $$$$$$$???????????????$$$$$$$
+																									 $$$$$$$$?????$$$$$$$$$$$
+                                                      $$$$$$$$$$$$$$$$$
+
+Matchmaker matchmaker make me a match.
+						 -Fiddler on the Roof
+
+
+
+
+
+# Lesson 4 - Text processing
+
+`wc`
+word count, or lines, or characters
+
+`sort`
+sort things
+
+`uniq`
+unique, remove duplicates
+
+`grep`
+Global regular expression print (g/re/p) - search for text in files
+
+`sed`
+stream editor - s/search/replace/g
+
+`awk`
+(initials of 3 names) scripting language to deal with files of data
+
+               _,.---.---.---.--.._
+            _.-' `--.`---.`---'-. _,`--.._
+           /`--._ .'.     `.     `,`-.`-._\
+          ||   \  `.`---.__`__..-`. ,'`-._/
+     _  ,`\ `-._\   \    `.    `_.-`-._,``-.
+  ,`   `-_ \/ `-.`--.\    _\_.-'\__.-`-.`-._`.
+ (_.o> ,--. `._/'--.-`,--`  \_.-'       \`-._ \
+  `---'    `._ `---._/__,----`           `-. `-\
+            /_, ,  _..-'                    `-._\
+            \_, \/ ._(
+             \_, \/ ._\
+              `._,\/ ._\
+                `._// ./`-._
+                  `-._-_-_.-'
+
+Awkward turtle.
+
+
+
+
+# Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
+
+Definitions:
+blank		          space or tab
+word              aka token, sequence of characters considered as a single unit
+name              word consisting of only alphanumeric and underscore not starting with a number
+metacharacter     character that separates words when not quoted
+control operator  token that performs a control function, example ; ends a command
+
+command - optional variable assignments followed by blank separated words & redirects,
+	terminated by a control operator
+
+pipeline - one or more commands separated by by | or |&
+lists    - one or more pipelines separated by ;, &, &&, || (& - run in the background, not and)
+
+Compound commands
+(list) - executed in a subshell env variable assignments and builtin commands
+		that affect the env do not remain after the command completes.
+
+{ list; } - list is executed in the current shell env.
+		You need spaces because braces aren't reserved words.
+
+
+## Pipes and redirection
+
+Numbers are actually file descriptors. /dev/null is like a black hole or garbage can.
+
+                       +----------------+  1. Standard Output
+   0. Standard Input   |                |---------------------->
+ --------------------->|    Command     |  2. Error Output
+                       |                |---------------------->
+                       +----------------+
+                                                   ----
+                                              +-----------+
+                                              | /dev/null |
+                                              |------------
+                                              |  |  |  |  |
+                                              |  |  |  |  |
+                                              |  |  |  |  |
+                                              +-----------+
+
+cmd1 | cmd2 - pipe/connect the standard output from cmd1 into the standard input of cmd2
+cmd 2>&1    - write error output into the standard output file descriptor
+cmd >file   - truncate file and write standard output (default) to file (file because no &)
+cmd <file   - read contents of file into the standard input for cmd
+cmd 2>>file - append error output to file
+n<&-        - close input file descriptor n
+m>&-        - close output file descriptor m
+
+cmd &>/dev/null - send all output to a black hole
+
+
+## Commands
+
+`tee`
+like a plumber's T pipe. Read from standard input. Write to the specified file as well as stdout.
+
+`which`
+which is the full path of this command if I'm actually running that command
+
+`type`
+type is this command that I'm running when I execute this
+
+`clear`
+clear the terminal, also C-l (really just scrolls up)
+
+`history`
+history of commands
+
+`!`
+rerun command from history - !! rerun last command, there are lots of other options for ! as well
+
+`tmux` (also `screen`)
+If you are remoted in, let's you reconnect to your session if you are disconnected.
+Also allows virtual desktops and split screens
+
+
+## Shortcuts
+
+`C-r`
+reverse search through commands
+
+`C-a`
+start of line
+
+`C-e`
+end of line
+
+`M-f`
+forward word
+
+`M-b`
+back word
+
+`C-M-e`
+expand commands that I've typed - aliases, variables, etc.
+
+`C-x *`
+expand globs
+
+`C-x g`
+list the expansions
+
+`C-_`
+undo commandline changes
+
+
+
+
+
+## Prompt Variables
+
+PS0 - String displayed with prompt expansion just before executing a command via PS1 prompt
+PS1 - Standard commandline prompt (default: \s-\v\$) (shell name-version$)
+PS2 - If you have multiple lines of command, what to show on continuing lines (default: >)
+PS3 - What to show if you use the `select` command in a script (default: #?)
+PS4 - What to show during output tracing using `set -x` in a script (default: ++)
+PROMPT_COMMAND - Execute contents of this before showing PS1, not prompt expanded.
+
+Before expansion PROMPT_COMMAND was used to set the PS1 prompt before displaying it.
+
+To capture timing:
+```
+PS0='\D{%I:%M:%S %P}\n'
+PROMPT_COMMAND='date +"%I:%M:%S %P"'
+```
+
+Will cause this:
+
+```
+> sleep 10 && echo hello
+03:03:39 pm
+hello
+03:03:49 pm
+```
+
+For better debugging, you can set PS4 inside a script
+```
+export PS4='Script[$0]:Line[$LINENO]:: '
+set -x
+echo "PS4 demo script"
+
+> /bin/bash debug_helper.sh
+Script[debug_helper.sh]:Line[3]:: echo 'PS4 debugging demo script'
+PS4 debugging demo script
+```
+
+      __...--~~~~~-._   _.-~~~~~--...__
+    //               `V'               \\
+   //                 |                 \\
+  //__...--~~~~~~-._  |  _.-~~~~~~--...__\\
+ //__.....----~~~~._\ | /_.~~~~----.....__\\
+====================\\|//====================
+                    `---`
+
+The most significant lesson of history is that we never learn from history.
+Any good history book is mainly just a long list of mistakes complete with names and dates.
+It's very embarrassing.
+		-A. Whitney Brown
+
+
+
+
+
+# Lesson 6 - Ownership
+
+`chmod`
+change modifiers (permissions) - user/group/all
+
+`chown`
+change ownership
+
+`su`
+substitute user OR super user - become another user
+
+`sudo`
+substitute user do - much more flexible than su; also, we know who you really are
+
+                       .--------.
+                  ____/          \
+                 |.--,            |
+                 ||__|            |
+                 '---,            |
+                     |____________|
+                     |\ \ \ \ \ \ |
+                     | \ \ \ \ \ \|
+                     |\ \ \ \ \ \ |
+                     | \ \ \ \ \ \|
+                     |\ \ \ \ \ \ |
+                     | \ \ \ \ \ \|
+                     |\ \ \ \ \ \ |
+                     | \ \ \ \ \ \|
+                     |\ \ \ \ \ \ |
+                     | \ \ \ \ \ \|
+                     |\ \ \ \ \ \ |
+                     |_\_\_\_\_\_\|
+                     `""""""""""""`
+
+All I need is this thermos.
+       -The Jerk
+
+
+
+
+
+# Lesson 7 - Jobs
+
+`jobs`
+list the running jobs (commands)
+
+`fg`
+foreground specified job
+
+`bg`
+background specified job
+
+`C-c`
+cancel job
+
+`C-z`
+halt job
+
+`sleep`
+wait for some amount of time
+
+`ps`
+list processes and their ids
+
+`kill`
+terminate a process by its process id with a signal
+
+ Signal     Value     Action   Comment
+ SIGHUP        1       Term    Hangup detected on controlling terminal or death of controlling process
+ SIGINT        2       Term    Interrupt from keyboard
+ SIGQUIT       3       Core    Quit from keyboard
+ SIGILL        4       Core    Illegal Instruction
+ SIGABRT       6       Core    Abort signal from abort
+ SIGFPE        8       Core    Floating-point exception
+ SIGKILL       9       Term    Kill signal
+ SIGSEGV      11       Core    Invalid memory reference
+ SIGPIPE      13       Term    Broken pipe: write to pipe with no readers;
+ SIGALRM      14       Term    Timer signal from alarm
+ SIGTERM      15       Term    Termination signal
+ SIGUSR1   30,10,16    Term    User-defined signal 1
+ SIGUSR2   31,12,17    Term    User-defined signal 2
+ SIGCHLD   20,17,18    Ign     Child stopped or terminated
+ SIGCONT   19,18,25    Cont    Continue if stopped
+ SIGSTOP   17,19,23    Stop    Stop process
+ SIGTSTP   18,20,24    Stop    Stop typed at terminal
+ SIGTTIN   21,21,26    Stop    Terminal input for background process
+ SIGTTOU   22,22,27    Stop    Terminal output for background process
+
+`pkill`
+kill using the process name instead of id
+
+`trap`
+do something when a signal is sent - example: confirm close without saving
+
+`pgrep`
+search processes by name
+
+`pstree`
+visualize processes in a tree to see parent/child relationships
+
+`nice`
+start a command with a different priority
+
+`renice`
+change a running command's priority
+
+`cron`
+command run on - task scheduling
+
+`crontab`
+see a list of registered crons
+
+`ls /proc`
+list of process id directories
+`ls /proc/PID`
+all kinds of files with useful info about the process - files open, commandline params, env vars
+see `man proc` for more
+
+`xargs`
+take standard input and do something with each line, control multi-threading
+
+`top`
+activity monitoring
+
+`htop`
+advanced top
+
+
+                    ()
+                    ||
+                 ___||___
+                |        |
+                 \_   _ /
+                    \/
+
+#####   #    #    ##      ##      ##    #    #
+#    #  #    #   #  #    #  #    #  #   #    #
+#####   #    #  #    #  #    #  #    #  ######
+#    #  # ## #  ######  ######  ######  #    #
+#    #  ##  ##  #    #  #    #  #    #  #    #
+#####   #    #  #    #  #    #  #    #  #    #
+
+				-Inception
+
+
+
+
+
+# Lesson 8 - Network
+
+`ping`
+like a sonar ping but on the network. Checks for a network connection to a host.
+
+`traceroute`
+see the path the packet took to get to the host
+
+`mtr`
+mytraceroute - fancier traceroute
+
+`wget`
+web get, download stuff via http, https, ftp.
+
+`curl`
+client url request library - advanced wget with many many protocols, multi-get, bi-directional
+
+`nmap`
+network map - scanning your ports, finding those vulnerabilities
+
+`nc`
+netcat - arbitrary TCP & UDP connections and listens
+
+`socat`
+socket cat - connect/proxy 2 things together - like a file to a tcp port
+
+`tcpdump`
+dump network traffic
+
+`ngrep`
+network grep - looking in your packets
+
+`ip`
+show and manipulate routing, network devices, interfaces, and tunnels
+
+`netstat`
+network statistics - print all kinds of network information
+
+`ss`
+socket statistics - tool to investigate sockets find what process is using a port
+
+`dig`
+DNS lookup utility
+
+`iptables`
+admin tool for packet filtering for firewalls or NAT
+
+`tc`
+traffic control - make your connection slow
+
+`conntrack`
+track connections - be a router or a firewall unless you can be a unicorn, then be a unicorn
+
+`ethtool`
+manage physical network connetions (ethernet ports)
+
+`mitmproxy`
+man in the middle proxy - this is how you snoop (your own only please) encrypted traffic
+
+`openssl`
+do Secure Socket Layer things. Check a websites certificate and generate your own to use https.
+
+`ssh`
+Keys and process for communicating securely.
+
+`tshark`
+Dump and analyze network traffic. Commandline version of wireshark.
+
+      ,|
+     / ;
+    /  \
+   : ,'(
+   |( `.\
+   : \  `\       \.
+    \ `.         | `.
+     \  `-._     ;   \
+      \     ``-.'.. _ `._
+       `. `-.            ```-...__
+        .'`.        --..          ``-..____
+      ,'.-'`,_-._            ((((   <o.   ,'
+           `' `-.)``-._-...__````  ____.-'
+               ,'    _,'.--,---------'
+           _.-' _..-'   ),'
+          ``--''        `
+
+I am a nice shark, not a mindless eating machine.
+					-Finding Nemo
+
+
+
+
+
+# Lesson 9 - Read/write, variables, aliases, and functions
+
+
+
+## read/write
+
+`echo`
+print a string - can be confusing because it doesn't need quotes
+
+`read variable`
+read input from user and put it in variable
+`read -p "Input: " variable`
+read input from user and put it in variable after prompting with Input:
+
+
+
+## variables
+
+`variable1=content`
+`variable2='multiple words, not expanded, $variable1 is the output string'`
+`variable3="multiple words, expanded, $variable1 output as content"`
+simple variables, output using $variable
+
+variables are global by default. You can specify them to be local:
+`local var1="I'm local to the script or function"`
+
+string substitution
+
+`str="abcdefghijklmnopqrstuvwxyz"`
+This is a string.
+
+`echo ${#str}`
+26
+
+`echo ${str:3:6}`
+defghi
+
+rabbit hole... google "bash string substitution"
+
+
+`array=(a b c)`
+This is an array. They can be sparce:
+`array[5]=e`
+
+`echo $array`
+a
+
+`echo ${array[0]}`
+a
+
+`echo $array[1]`
+a[1]
+
+`echo ${array[1]}`
+b
+
+`echo ${array[@]}`
+`echo ${array[*]}`
+a b c e
+
+`echo ${#array[*]}`
+4
+
+rabbit hole... google "bash arrays"
+
+associative arrays (hashes)
+
+`declare -A hash=(["cow"]="moo" ["dog"]="woof")`
+
+`echo ${hash[dog]}`
+woof
+
+
+
+## aliases
+
+very basic customizations, front of command replacement only, highest precendence in expansion
+alias cp="cp -i"
+alias rm="rm -i"
+alias mkdir="mkdir -p"
+
+
+
+## functions
+
+function foo {
+}
+
+foo () {
+}
+
+parameters
+$1, $2, ... param 1-9 - for $10+ you must use ${10}
+$0 the function called
+$@ all params from 1+
+$# count of parameters
+
+scoping
+local var1="this only exists inside the function"
+
+Only returns:
+0 success
+!0 failure code
+
+`return 55`
+you can see 55 via the $? variable which contains the most recent return code
+
+To return non-numbers:
+echo a string and capture the result:
+result="$(my_func)"
+
+Or use global/script variables.
+
+Functions aren't expanded. If you want to create a wrapper for a command, use the command keyword:
+function ls {
+	command ls -lh
+}
+
+
+
+
+
+# Lesson 10 - Scripting
+
+
+
+## Script basics
+
+Shebang goes at the top of the file so it executes using the right shell.
+It gets wrapped in its own sub environment so its global variables don't polute your envirnment.
+
+#!/bin/bash
+
+Very similar to a function, but it's a file. Apply the same info for parameters and returns.
+If you want to pass a variable back up from the script environment, use `export var1`
+
+`source script.sh` or `. script.sh` will execute the file as if it's executed line by line as written commands.
+
+The base content execution of a script is "main".
+
+
+
+## Expressions
+
+((expression)) - arithmetic evaluation, return status flips math result
+
+[[ expression ]] - conditional expressions returns 0 or 1. Funky expansion rules.
+
+test expression - execute the expression, standard expansion rules.
+[ expression ]
+
+Expression types:
+file expressions (use flags)
+integer expressions (use flags -eq, -lt, -ge, -ne, etc.)
+string expressions (use flags or symbols -z STRING testing for zero length, or "foo" != "bar")
+
+== same as =
+
+( expression ) - returns value of expression, used to override precedence
+! expression   - flips the result
+expr1 && expr2 - and
+expr1 || expr2 - or
+
+
+## Conditions
+
+if list; then
+	list;
+elif list; then
+	list;
+else
+	list;
+fi
+
+List results in status code. (0 is success, other number is failure).
+
+
+case word in [ [(] pattern [ | pattern ] ... ) list ;; ] ... esac
+
+patterns have funky expansion rules
+
+example:
+
+case "$1" in
+        start)
+            start
+            ;;
+
+        stop)
+            stop
+            ;;
+
+        status)
+            status anacron
+            ;;
+
+        restart)
+            stop
+            start
+            ;;
+
+        *)
+            echo $"Usage: $0 {start|stop|restart|status}"
+            exit 1
+esac
+
+
+
+## loops
+
+
+### for, while, until loops
+for name in words; do
+	list;
+done
+
+If "in words" is left out, iterates over positional params.
+
+for i in 1 2 3 4 5; do
+   echo "$i"
+done
+
+
+
+for (( initializer-expr ; condition-expr ; step-expr )); do
+	list;
+done
+
+for (( c=1; c<=5; c++ ))
+do
+   echo "Welcome $c times"
+done
+
+
+
+while list-1; do
+	list-2;
+done
+
+until list-1; do
+	list-2;
+done
+
+"until" is like "while !"
+
+
+
+### select loop
+
+get the user to pick something, keeps looping until cancelled or break.
+
+select name in words; do
+	list;
+done
+
+select food in apples bananas; do
+		if [ -n "$food" ]; then
+			break
+		fi
+done
+echo "I selected $food."
+
+
+## more stuff
+
+`tput`
+fine grain control of the cursor in the terminal
+
+`cgroups`
+container groups - existed before docker
+
+
