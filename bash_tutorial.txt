@@ -1,5 +1,69 @@
 Tutorial
 
+# Lesson 0 - Initial Info
+# Lesson 1 - Navigation, files, folders
+# Lesson 2 - Working with files
+# Lesson 3 - Globs & regex
+# Lesson 4 - Text processing
+# Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
+# Lesson 6 - Ownership
+# Lesson 7 - Jobs
+# Lesson 8 - Network
+# Lesson 9 - Read/write, variables, aliases, and functions
+# Lesson 10 - Scripting
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -10,7 +74,9 @@ What's bash?
 What about other shells?
 MacOS caveats
 
-Commands can take --long-params and/or -a abbreviations
+Commands can take --long-flags and/or -a abbreviations and/or parameters
+
+
 
 ## Self-Help
 
@@ -58,6 +124,39 @@ The exits are here, here, here, here, here, anywhere!
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 1 - Navigation, files, folders
 
 `pwd`
@@ -84,13 +183,74 @@ copy
 `mv`
 move (also rename)
 
+~
+$HOME
+/home/<user>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 2 - Working with files
+
+
+
+## Files
+
+File names are case sensitive
+
+`.file`
+This is a hidden file.
+
+`foo\ bar`
+A file named "foo bar" - spaces and other special characters are allowed, be careful with this
+
+
+
+
+## Commands
 
 `cat`
 catenate - read text from file to output
 
 `tac`
-cat but in reverse order
+cat but lines in reverse order
 
 `more`
 pagenate
@@ -104,14 +264,6 @@ update the timestamp on a file, creates an empty file if it doesn't exist
 `tar`
 tape archive - file splitting/merging/compression
 
-`.file`
-This is a hidden file.
-
-`foo\ bar`
-A file named "foo bar"
-
-File names are also case sensitive
-
 `locate`
 locate a file from a system db if it exists in the db after the last update occurred
 
@@ -124,32 +276,52 @@ output the first lines of a file
 `tail`
 output the last lines of a file, you can tell it to keep giving you the last lines for logs
 
-                                        ,,~~~~~~,,..
-                             ...., ,'~             |
-                             \    V                /
-                              \  /                 /
-                              ;####>     @@@@@     )
-                              ##;,      @@@@@@@    )
-                           .##/  ~>      @@@@@   .   .
-                          ###''#>              '      '
-      .:::::::.      ..###/ #>               '         '
-     //////))))----~~ ## #}                '            '
-   ///////))))))                          '             '
-  ///////)))))))\                        '              '
- //////)))))))))))                                      '
- |////)))))))))))))____________________________________).
-|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
-
-This is size 10 chaos...
-I am a hat.
-You are a shoe.
-I belong on the head...
-You belong to the tail.
-Know your place. Keep your place. Be a shoe.
-                      -Snowpiercer
-
 `tail -F`
 Will keep your place outputting at the tail end of a file as it is written to.
+
+examples:
+cat snowpiercer_quote.txt
+tail -n 5 snowpiercer_quote.txt |head -n 1
+head -n 22 snowpiercer_quote.txt |tail -n 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -201,12 +373,20 @@ a range of things to acceptable for this character
 [^<stuff>]
 not this range of, but match anything else
 
+
+
+
 Regex is a deep rabbit hole. Some complex examples...
 
+
+
 `(\b[A-Z]+\b).*?\b(?=[a-z]+\b)(?i)\1(?# almost done)\b`
+
 Test if an uppercase word exists elsewhere as a lowercase word (DOG and dog).
 This uses ranges, special escape characters, groups,
 back references, look arounds, inline modifiers, and comments.
+
+
 
 ```
 (?(DEFINE)  # start DEFINE block
@@ -275,7 +455,42 @@ Matchmaker matchmaker make me a match.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 4 - Text processing
+
+`nano`, `vim`, `emacs`
+text editors
 
 `wc`
 word count, or lines, or characters
@@ -315,6 +530,43 @@ Awkward turtle.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
 
 Definitions:
@@ -336,6 +588,11 @@ Compound commands
 
 { list; } - list is executed in the current shell env.
     You need spaces because braces aren't reserved words.
+
+
+PATH
+a system variable you can update to tell the os where to look for commands you run
+
 
 
 ## Pipes and redirection
@@ -423,8 +680,6 @@ undo commandline changes
 
 
 
-
-
 ## Prompt Variables
 
 PS0 - String displayed with prompt expansion just before executing a command via PS1 prompt
@@ -451,6 +706,8 @@ hello
 03:03:49 pm
 ```
 
+
+
 For better debugging, you can set PS4 inside a script
 ```
 export PS4='Script[$0]:Line[$LINENO]:: '
@@ -461,6 +718,8 @@ echo "PS4 demo script"
 Script[debug_helper.sh]:Line[3]:: echo 'PS4 debugging demo script'
 PS4 debugging demo script
 ```
+
+
 
       __...--~~~~~-._   _.-~~~~~--...__
     //               `V'               \\
@@ -479,13 +738,68 @@ It's very embarrassing.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 6 - Ownership
+
+`ls -l`
+will show permissions
+
+-rw-r--r-- file
+drwxr-xr-x folder
+^ ^  ^  ^
+| |  |  |
+| |  |  +-- read write execute for all users
+| |  +----- read write execute for group
+| +-------- read write execute for user
++---------- directory?
 
 `chmod`
 change modifiers (permissions) - user/group/all
 
 `chown`
 change ownership
+
+`stat`
+shows file status ownership/permissions
+`stat -c "%u:%g %U:%G" /app/`
 
 `su`
 substitute user OR super user - become another user
@@ -515,6 +829,43 @@ substitute user do - much more flexible than su; also, we know who you really ar
 
 All I need is this thermos.
        -The Jerk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -591,14 +942,16 @@ command run on - task scheduling
 `crontab`
 see a list of registered crons
 
+`xargs`
+take standard input and do something with each line, control multi-threading
+
+`/proc` is a special directory
 `ls /proc`
 list of process id directories
 `ls /proc/PID`
 all kinds of files with useful info about the process - files open, commandline params, env vars
 see `man proc` for more
 
-`xargs`
-take standard input and do something with each line, control multi-threading
 
 `top`
 activity monitoring
@@ -622,6 +975,47 @@ advanced top
 #####   #    #  #    #  #    #  #    #  #    #
 
         -Inception
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -719,6 +1113,34 @@ I am a nice shark, not a mindless eating machine.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Lesson 9 - Read/write, variables, aliases, and functions
 
 
@@ -800,6 +1222,11 @@ alias cp="cp -i"
 alias rm="rm -i"
 alias mkdir="mkdir -p"
 
+`alias`
+list all aliases
+
+`unalias`
+unalias your alias that you aliased
 
 
 ## functions
@@ -819,7 +1246,7 @@ $# count of parameters
 scoping
 local var1="this only exists inside the function"
 
-Only returns:
+Only return numbers:
 0 success
 !0 failure code
 
@@ -836,6 +1263,44 @@ Functions aren't expanded. If you want to create a wrapper for a command, use th
 function ls {
   command ls -lh
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -980,6 +1445,9 @@ select food in apples bananas; do
     fi
 done
 echo "I selected $food."
+
+in one line:
+select food in apples bananas; do if [ -n "$food" ]; then break; fi; done; echo "I selected $food."
 
 
 ## more stuff
