@@ -13,7 +13,11 @@ Tutorial
 # Lesson 10 - Scripting
 # Beyond!   - Other stuff
 
-
+More info at:
+man bash
+https://www.gnu.org/software/bash/manual/html_node/index.html
+https://tldp.org/LDP/abs/html/
+https://en.wikipedia.org/wiki/List_of_Unix_commands
 
 
 
