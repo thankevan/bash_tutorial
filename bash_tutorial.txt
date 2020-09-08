@@ -1,17 +1,17 @@
 Tutorial
 
-# Lesson 0 - Initial Info
-# Lesson 1 - Navigation, files, folders
-# Lesson 2 - Working with files
-# Lesson 3 - Globs & regex
-# Lesson 4 - Text processing
-# Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
-# Lesson 6 - Ownership
-# Lesson 7 - Jobs
-# Lesson 8 - Network
-# Lesson 9 - Read/write, variables, aliases, and functions
+# Lesson 0  - Initial Info
+# Lesson 1  - Navigation, files, folders
+# Lesson 2  - Working with files
+# Lesson 3  - Globs & regex
+# Lesson 4  - Text processing
+# Lesson 5  - Pipes, commands, command line, shortcuts, & prompts
+# Lesson 6  - Ownership
+# Lesson 7  - Jobs
+# Lesson 8  - Network
+# Lesson 9  - Read/write, variables, aliases, and functions
 # Lesson 10 - Scripting
-
+# Beyond!   - Other stuff
 
 
 
@@ -183,9 +183,8 @@ copy
 `mv`
 move (also rename)
 
-~
-$HOME
-/home/<user>
+~ or HOME
+Both of these expand/substitute for somehting like this /home/<user>
 
 
 
@@ -250,7 +249,7 @@ A file named "foo bar" - spaces and other special characters are allowed, be car
 catenate - read text from file to output
 
 `tac`
-cat but lines in reverse order
+cat but lines will output in reverse order
 
 `more`
 pagenate
@@ -261,6 +260,9 @@ less is more, and then some
 `touch`
 update the timestamp on a file, creates an empty file if it doesn't exist
 
+`mktemp`
+create a temporary file for you to use
+
 `tar`
 tape archive - file splitting/merging/compression
 
@@ -269,6 +271,18 @@ locate a file from a system db if it exists in the db after the last update occu
 
 `find`
 find a file in real time
+
+`basename`
+trim a full path to just the name of the file
+
+`diff`
+compare files line by line to see what's different, output can be used by patch
+
+`patch`
+use the output of diff to apply changes to a file
+
+`comm`
+compare files to see what's similar
 
 `head`
 output the first lines of a file
@@ -281,6 +295,8 @@ Will keep your place outputting at the tail end of a file as it is written to.
 
 examples:
 cat snowpiercer_quote.txt
+head -n 17 snowpiercer_quote.txt
+tail -n 9 snowpiercer_quote.txt
 tail -n 5 snowpiercer_quote.txt |head -n 1
 head -n 22 snowpiercer_quote.txt |tail -n 1
 
@@ -489,7 +505,7 @@ Matchmaker matchmaker make me a match.
 
 # Lesson 4 - Text processing
 
-`nano`, `vim`, `emacs`
+`nano`, `vim`, `emacs`, `ed`
 text editors
 
 `wc`
@@ -502,7 +518,18 @@ sort things
 unique, remove duplicates
 
 `grep`
-Global regular expression print (g/re/p) - search for text in files
+search for text in files
+from the ed command, Globally (search) Regular Expression Print (g/re/p)
+
+perl
+Practical Extraction and Report Language
+language designed for text processing - grep inside perl can be faster than grep
+
+`jq`
+Do stuff with json
+
+`tr`
+translate from one set of characters to another
 
 `sed`
 stream editor - s/search/replace/g
@@ -579,7 +606,7 @@ control operator  token that performs a control function, example ; ends a comma
 command - optional variable assignments followed by blank separated words & redirects,
   terminated by a control operator
 
-pipeline - one or more commands separated by by | or |&
+pipeline - one or more commands separated by by | or |& (shorthand for 2>&1 |)
 lists    - one or more pipelines separated by ;, &, &&, || (& - run in the background, not and)
 
 Compound commands
@@ -597,7 +624,7 @@ a system variable you can update to tell the os where to look for commands you r
 
 ## Pipes and redirection
 
-Numbers are actually file descriptors. /dev/null is like a black hole or garbage can.
+Numbers are actually file descriptors in /dev/fd. /dev/null is like a black hole or garbage can.
 
                        +----------------+  1. Standard Output
    0. Standard Input   |                |---------------------->
@@ -613,9 +640,18 @@ Numbers are actually file descriptors. /dev/null is like a black hole or garbage
                                               |  |  |  |  |
                                               +-----------+
 
+`|`
+A pipe
+
+`&1`
+A file descriptor because it has an &, otherwise 1 is a file.
+
+`>`, `>>`, `<`
+redirects
+
 cmd1 | cmd2 - pipe/connect the standard output from cmd1 into the standard input of cmd2
 cmd 2>&1    - write error output into the standard output file descriptor
-cmd >file   - truncate file and write standard output (default) to file (file because no &)
+cmd >file   - write standard output (default) to new file
 cmd <file   - read contents of file into the standard input for cmd
 cmd 2>>file - append error output to file
 n<&-        - close input file descriptor n
@@ -647,6 +683,16 @@ rerun command from history - !! rerun last command, there are lots of other opti
 `tmux` (also `screen`)
 If you are remoted in, lets you reconnect to your session if you are disconnected.
 Also allows virtual desktops and split screens
+
+
+
+## Command Substitution
+
+`command` == $(command)
+This is how you get the result of a command into a string or as a parameter to another command.
+$(command) is preferred to `command`
+You can nest substitutions easily and it is similar to variable substitutions which also use $.
+
 
 
 ## Shortcuts
@@ -1312,8 +1358,8 @@ function ls {
 
 ## Script basics
 
-Shebang goes at the top of the file so it executes using the right shell.
-It gets wrapped in its own sub environment so its global variables don't polute your envirnment.
+Shebang goes at the top of the file so it executes using the right shell (or command).
+It gets wrapped in its own sub environment so its global variables don't polute your environment.
 
 #!/bin/bash
 
@@ -1450,12 +1496,66 @@ in one line:
 select food in apples bananas; do if [ -n "$food" ]; then break; fi; done; echo "I selected $food."
 
 
-## more stuff
+## more scripting stuff
 
 `tput`
 fine grain control of the cursor in the terminal
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Beyond!
+
 `cgroups`
 container groups - existed before docker
 
+`banner`
+print something big
+
+`cal`
+print a calendar
+
+`date`
+get the date and time
+
+`time`
+at the start of a command to get timings
 
