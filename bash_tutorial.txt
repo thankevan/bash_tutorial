@@ -297,12 +297,6 @@ output the last lines of a file, you can tell it to keep giving you the last lin
 `tail -F`
 Will keep your place outputting at the tail end of a file as it is written to.
 
-examples:
-cat snowpiercer_quote.txt
-head -n 17 snowpiercer_quote.txt
-tail -n 9 snowpiercer_quote.txt
-tail -n 5 snowpiercer_quote.txt |head -n 1
-head -n 22 snowpiercer_quote.txt |tail -n 1
 
 
 
