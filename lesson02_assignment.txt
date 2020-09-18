@@ -23,6 +23,9 @@ Get the differences between letter1.txt and letter2.txt
 Get just the content changes, ignore whitespace changes.
 
 9.
-Find the real changes that were made by patching `letter2.txt` with `finalletter.patch`
+Find the real letter that was sent by patching `letter2.txt` with `finalletter.patch`
+Then output the fixed `letter2.txt`
 
-
+10.
+Open a new terminal window and start "logging" by running `./continualwriter.sh mylog.log`.
+Watch that logfile's contents grow.

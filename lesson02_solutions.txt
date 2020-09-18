@@ -23,3 +23,9 @@ diff letter1.txt letter2.txt
 diff -w letter1.txt letter2.txt
 
 9.
+patch letter2.txt finalletter.patch
+cat letter2.txt
+
+10.
+tail -F mylog.log
+
