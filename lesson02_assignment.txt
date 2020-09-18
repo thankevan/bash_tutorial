@@ -1,0 +1,28 @@
+1.
+Output the `snowpiercer_quote.txt` file to the screen.
+
+2.
+Output it upside down.
+
+3.
+Just output the shoe.
+
+4.
+Just output the quote.
+
+5.
+Get a list of all .txt files under `folder`.
+
+6. 
+Output the contents of each .txt file.
+
+7.
+Get the differences between letter1.txt and letter2.txt
+
+8.
+Get just the content changes, ignore whitespace changes.
+
+9.
+Find the real changes that were made by patching `letter2.txt` with `finalletter.patch`
+
+

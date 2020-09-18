@@ -1,0 +1,25 @@
+1.
+cat snowpiercer_quote.txt
+
+2.
+tac snowpiercer_quote.txt
+
+3.
+head -n 17 snowpiercer_quote.txt
+
+4.
+tail -n 9 snowpiercer_quote.txt
+
+5.
+find folder -name '*.txt'
+
+6. 
+find folder -name '*.txt' -exec cat {} \;
+
+7.
+diff letter1.txt letter2.txt
+
+8.
+diff -w letter1.txt letter2.txt
+
+9.

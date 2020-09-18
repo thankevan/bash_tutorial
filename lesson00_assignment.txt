@@ -1,0 +1,9 @@
+
+1.
+Review the manual for `ls`.
+How would you see the file sizes?
+
+2.
+Review the manual for `cd`.
+Hint: cd is a builtin command for bash.
+

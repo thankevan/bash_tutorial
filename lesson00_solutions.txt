@@ -1,0 +1,7 @@
+
+1.
+man ls
+
+2.
+man bash
+

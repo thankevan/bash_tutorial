@@ -188,7 +188,7 @@ copy
 move (also rename)
 
 ~ or HOME
-Both of these expand/substitute for somehting like this /home/<user>
+Both of these expand/substitute for something like this /home/<user>
 
 
 
@@ -534,6 +534,12 @@ Do stuff with json
 
 `tr`
 translate from one set of characters to another
+
+`expand`
+convert tabs to spaces
+
+`cut`
+get a piece out of a string or the same piece out of the lines of a file
 
 `sed`
 stream editor - s/search/replace/g

@@ -1,0 +1,28 @@
+
+
+1.
+What's your full path?
+
+
+2.
+Create a directory structure like `dir1/dir2/dir3` and get back to the tutorial directory.
+How would you do that with only one command?
+
+
+3.
+Go to `dir2`.
+
+
+4.
+Copy `lesson0_assignment.txt` into `dir2`.
+Whoops, move the copy from `dir2` to `dir3` and give it a different name.
+
+
+5.
+Get back to the tutorial directory.
+Delete `dir1` and everything underneath it in one fell swoop...
+but make sure the computer gets your confirmation before deleting.
+
+6.
+List the files, including hidden ones, with permissions and sizes in `folder`.
+
