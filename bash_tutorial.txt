@@ -347,12 +347,17 @@ Will keep your place outputting at the tail end of a file as it is written to.
 
 ## Unix globs
 
+list any file with a name like this:
+ls fil?{apple,b,e,4,82}*
+
 ?
 exactly one character
 
 *
 0+ characters
 
+{apple,b,e,4,82}
+find any of apple, b, e, 4, 82 in that spot
 
 
 ## Regex

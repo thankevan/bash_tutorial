@@ -11,10 +11,10 @@ head -n 17 snowpiercer_quote.txt
 tail -n 9 snowpiercer_quote.txt
 
 5.
-find folder -name '*.txt'
+find folder -name 'find.txt'
 
-6. 
-find folder -name '*.txt' -exec cat {} \;
+6.
+find folder -name 'find.txt' -exec cat {} \;
 
 7.
 diff letter1.txt letter2.txt
@@ -29,3 +29,7 @@ cat letter2.txt
 10.
 tail -F mylog.log
 
+11.
+cat folder/'file3 withaspace.txt'
+or
+cat folder/file3\ withaspace.txt

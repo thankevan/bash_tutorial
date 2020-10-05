@@ -1,0 +1,10 @@
+
+1.
+list all files under folder that start with file
+
+2.
+list any file under folder/subfolder that ends with an extension of log or info
+
+3.
+list only single digit file###.txt text files in folder/subfolder
+

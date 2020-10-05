@@ -1,0 +1,21 @@
+
+1.
+use nano to modify folder/file1.txt
+
+2.
+use wc to count the lines in letters/letter1.txt
+
+3.
+use grep to find all the words 'you' from letter1.txt or letter2.txt
+
+4.
+output the contents of folder/subfolder/file8.txt
+sort the output contents of folder/subfolder/file8.txt
+don't print duplicates this time
+
+5.
+find the names of my dogs in folder/subfolder/file11.json (you may need to install jq)
+
+6.
+replace "dog" with "cat" in folder/subfolder/file11.json, in place
+

@@ -5,3 +5,5 @@ man ls
 2.
 man bash
 
+find SHELL BUILTIN COMMANDS section
+find cd

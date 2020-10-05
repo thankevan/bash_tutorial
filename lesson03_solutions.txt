@@ -1,0 +1,9 @@
+
+1.
+ls folder/file*
+
+2.
+ls folder/subfolder/*.{log,info}
+
+3.
+ls folder/subfolder/file?.txt

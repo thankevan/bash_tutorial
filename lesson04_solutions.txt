@@ -1,0 +1,21 @@
+
+1.
+nano folder/file1.txt
+
+2.
+wc -l letters/letter1.txt
+
+3.
+grep you letters/letter?.txt
+
+4.
+cat folder/subfolder/file8.txt
+sort folder/subfolder/file8.txt
+sort -u folder/subfolder/file8.txt OR sort folder/subfolder/file8.txt | uniq
+
+5.
+jq '.[].name' folder/subfolder/file11.json
+
+6.
+sed 's/type/animal/' -i folder/subfolder/file11.json
+
