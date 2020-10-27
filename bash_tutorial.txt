@@ -5,7 +5,7 @@ Tutorial
 # Lesson 2  - Working with files
 # Lesson 3  - Globs & regex
 # Lesson 4  - Text processing
-# Lesson 5  - Pipes, commands, command line, shortcuts, & prompts
+# Lesson 5  - Pipes & redirects, commands, command line, shortcuts, & prompts
 # Lesson 6  - Ownership
 # Lesson 7  - Jobs
 # Lesson 8  - Network
@@ -603,7 +603,7 @@ Awkward turtle.
 
 
 
-# Lesson 5 - Pipes, commands, command line, shortcuts, & prompts
+# Lesson 5 - Pipes & redirects, commands, command line, shortcuts, & prompts
 
 Definitions:
 blank             space or tab
@@ -640,23 +640,25 @@ Numbers are actually file descriptors in /dev/fd. /dev/null is like a black hole
  --------------------->|    Command     |  2. Error Output
                        |                |---------------------->
                        +----------------+
-                                                   ----
-                                              +-----------+
+                                                   +--+
+                                              +----+--+---+
                                               | /dev/null |
                                               |------------
                                               |  |  |  |  |
                                               |  |  |  |  |
                                               |  |  |  |  |
                                               +-----------+
+                                                trashcan
 
 `|`
 A pipe
 
-`&1`
-A file descriptor because it has an &, otherwise 1 is a file.
-
 `>`, `>>`, `<`
-redirects
+Redirects
+
+`&1`
+A file descriptor when on the right of the redirect because it has an &, otherwise 1 is a file.
+The left side of a redirect is always a file descriptor, no & needed.
 
 cmd1 | cmd2 - pipe/connect the standard output from cmd1 into the standard input of cmd2
 cmd 2>&1    - write error output into the standard output file descriptor

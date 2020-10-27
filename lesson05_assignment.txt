@@ -1,0 +1,57 @@
+
+Pipes & Redirects
+
+1.
+without moving, get a list of what's in the `stuff` directory, but only the first 3 things
+
+2.
+without moving, put the full list of what's in the `stuff` directory into file called filelist.txt
+
+3.
+actually, overwrite that with what's in `folder`
+
+4.
+whoops, now append to that list what's in `stuff`
+
+5.
+using only `wc` & filelist.txt get the lines in filelist.txt Just the number, not the filename.
+
+6.
+The next problems all start with this command:
+`ls bash_tutorial.txt bash_tutorial.foo`
+
+a.
+See that you get 1 error and one standard ouptut by running it
+
+b.
+Redirect standard output to nowhere so you only get the error
+
+c.
+Redirect error output to nowhere so you only get the good output
+
+d.
+Route both into their own files ls.txt err.txt
+
+e.
+Route both to ls.txt with only one redirect
+
+f.
+Use the command, wc, and redirects to count both the total files + errors together (2)
+
+
+Commands
+
+7.
+List the files in stuff/ both display the output and put into a file ls.txt
+
+8.
+Get the type of command that `ls` is. Get the path of the `ls` command.
+
+9.
+Get the type of command that `history` is. Get the path of the `history` command.
+
+10.
+Rerun your last command.
+
+11.
+Get the history of commands. Rerun the one you did for 7.

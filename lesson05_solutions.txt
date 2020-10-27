@@ -1,0 +1,57 @@
+
+1.
+ls stuff | head -n 3
+
+2.
+ls stuff >filelist.txt
+
+3.
+ls folder >filelist.txt
+
+4.
+ls stuff >>filelist.txt
+
+5.
+wc -l <filelist.txt
+
+6.
+a.
+ls bash_tutorial.txt bash_tutorial.foo
+
+b.
+ls bash_tutorial.txt bash_tutorial.foo >/dev/null
+
+c.
+ls bash_tutorial.txt bash_tutorial.foo 2>/dev/null
+
+d.
+ls bash_tutorial.txt bash_tutorial.foo >ls.txt 2>err.txt
+
+e.
+ls bash_tutorial.txt bash_tutorial.foo &>ls.txt
+
+f.
+ls bash_tutorial.txt bash_tutorial.foo 2>&1 | wc -l
+
+
+
+7.
+ls stuff/ | tee ls.txt
+
+8.
+type ls
+which ls
+
+9.
+type history
+which history - no path because it's a built-in
+
+10.
+!!
+
+11.
+history
+!###  - ### depends on your history
+
+
+
